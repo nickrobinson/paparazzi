@@ -1,8 +1,8 @@
 paparazzi.js
 -
 
-[![CircleCI](https://img.shields.io/circleci/project/github/nickrobinson/paparazzi.svg)]()
-[![npm](https://img.shields.io/npm/dw/paparazzi.svg)]()
+[![CircleCI](https://img.shields.io/circleci/project/github/nickrobinson/paparazzi.svg)](https://circleci.com/gh/nickrobinson/paparazzi)
+[![npm](https://img.shields.io/npm/dw/paparazzi.svg)](https://www.npmjs.com/package/paparazzi)
 
 _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
 
