@@ -7,16 +7,16 @@ RUN apt-get update ; apt-get install -yq nodejs npm
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Copy source code
-ADD . /paparazzo
+ADD . /paparazzi
 
-RUN cd /paparazzo
+RUN cd /paparazzi
 
-RUN chmod +x /paparazzo/node_modules/coffee-script/bin/coffee
+RUN chmod +x /paparazzi/node_modules/coffee-script/bin/coffee
 
 # Install app dependencies
-RUN cd /paparazzo; make install
+RUN cd /paparazzi; make install
 
 EXPOSE  3000
-WORKDIR /paparazzo
-CMD ["node", "/paparazzo/demo/bootstrap.js"]
+WORKDIR /paparazzi
+CMD ["node", "/paparazzi/demo/bootstrap.js"]
 

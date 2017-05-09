@@ -1,12 +1,12 @@
 {
-    "name": "paparazzo",
-    "author": "Rod Wilhelmy <rod@wilhel.me>",
+    "name": "paparazzi",
+    "author": "Nick Robinson <nrobinson13@gmail.com>",
     "description": "A high performance web proxy for serving MJPG streams to the masses.",
-    "version": "0.5.1",
-    "main": "./src/paparazzo",
+    "version": "0.5.2",
+    "main": "./src/paparazzi",
     "repository": {
       "type": "git",
-      "url": "https://github.com/rodowi/Paparazzo.js.git"
+      "url": "https://github.com/nickrobinson/paparazzi"
     },
     "keywords": [
       "mjpg",

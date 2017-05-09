@@ -1,25 +1,25 @@
-# Using the Paparazzo.js module
+# Using the Paparazzi.js module
 
-Paparazzo = require '../src/paparazzo'
+Paparazzi = require '../src/paparazzi'
 express = require 'express'
 app = express()
 
 # For a list of public cameras to test check:
 # https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras
 
-paparazzo = new Paparazzo
+paparazzi = new Paparazzi
     url: 'http://67.109.86.186/mjpg/video.mjpg'
 
 updatedImage = ''
 
-paparazzo.on "update", (image) =>
+paparazzi.on "update", (image) =>
     updatedImage = image
     console.log "Downloaded #{image.length} bytes"
 
-paparazzo.on 'error', (error) =>
+paparazzi.on 'error', (error) =>
     console.log "Error: #{error.message}"
 
-paparazzo.start()
+paparazzi.start()
 
 app.get '/camera', (req, res, next) ->
     res.status 200

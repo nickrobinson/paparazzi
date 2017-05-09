@@ -5,21 +5,21 @@ chai = require 'chai'
 chai.should()
 expect = chai.expect
 
-Paparazzo = require '../src/paparazzo'
+Paparazzi = require '../src/paparazzi'
 
-paparazzo = null
+paparazzi = null
 
-describe 'Paparazzo constructor', ->
+describe 'Paparazzi constructor', ->
     it 'should assign port 80 by default', ->
-        paparazzo = new Paparazzo
+        paparazzi = new Paparazzi
             host: '85.105.120.239'
-        paparazzo.options.port.should.equal 80
+        paparazzi.options.port.should.equal 80
     it 'should looked after "/" by default', ->
-        paparazzo = new Paparazzo
+        paparazzi = new Paparazzi
             host: '85.105.120.239'
-        paparazzo.options.path.should.equal '/'
+        paparazzi.options.path.should.equal '/'
     it 'should be initialized with a host parameter', ->
-        paparazzo = new Paparazzo
+        paparazzi = new Paparazzi
             port: 1337
-        paparazzo.should.equal {}
+        paparazzi.should.equal {}
 

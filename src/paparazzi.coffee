@@ -1,12 +1,12 @@
 #
-# Paparazzo.js: A MJPG proxy for the masses
+# Paparazzi.js: A MJPG proxy for the masses
 #
-#   paparazzo = new Paparazzo(options)
+#   paparazzi = new Paparazzi(options)
 #
-#   paparazzo.on "update", (image) => 
+#   paparazzi.on "update", (image) => 
 #     console.log "Downloaded #{image.length} bytes"
 #
-#   paparazzo.start()
+#   paparazzi.start()
 #
 
 request = require 'request'
@@ -14,7 +14,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 EventEmitter = require('events').EventEmitter
 
-class Paparazzo extends EventEmitter
+class Paparazzi extends EventEmitter
 
   @image = ''
   imageExpectedLength = -1
@@ -122,4 +122,4 @@ class Paparazzo extends EventEmitter
         message: 'Data buffer just reached threshold, flushing memory'
 
 
-module.exports = Paparazzo
+module.exports = Paparazzi

@@ -1,4 +1,4 @@
-Paparazzo.js
+paparazzi.js
 -
 
 _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
@@ -7,9 +7,9 @@ _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
 
 A high performance web proxy for serving [MJPG](http://en.wikipedia.org/wiki/Motion_JPEG) streams to the masses.
 
-IPCamera (1) <-> (1) Paparazzo.js (1) <-> (N) Users
+IPCamera (1) <-> (1) paparazzi.js (1) <-> (N) Users
 
-![Demo screenshot](https://github.com/wilhelmbot/Paparazzo.js/raw/master/mjpg_demo.gif "Streaming a VIVOTEK camera")
+![Demo screenshot](https://github.com/wilhelmbot/Paparazzi.js/raw/master/mjpg_demo.gif "Streaming a VIVOTEK camera")
 
 Background
 -
@@ -22,7 +22,7 @@ IP cameras are slow devices that can't handle a regular amount of web traffic. S
 2. **Ye olde approach** - Serve images as static files in your server. I've found that several sites use this approach through messy PHP background jobs that update this files at slow intervals, generating excessive (and unnecessary) disk accesses.
 3. **Plug n' pray approach** - Embed a flash or Java-based player, such as the  [Cambozola](http://www.charliemouse.com/code/cambozola/) player. This requires plugins.
 4. **MJPG proxy** - Serve the MJPG stream directly if you are targeting only grade A browsers, (sorry IE).
-5. **Paparazzo.js: A web service of dynamic images** - Build a MJPG proxy server which parses the stream, updates images in memory, and delivers new images on demand. I've found that this approach is scalable, elegant, blazing fast and doesn't require disk access.
+5. **paparazzi.js: A web service of dynamic images** - Build a MJPG proxy server which parses the stream, updates images in memory, and delivers new images on demand. I've found that this approach is scalable, elegant, blazing fast and doesn't require disk access.
 
 Usage
 -
@@ -33,20 +33,20 @@ Usage
 # Initialize
 
 # Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
-paparazzo = new Paparazzo
-  host: 'http://67.109.86.186/mjpg/video.mjpg'
+paparazzi = new Paparazzi
+  url: 'http://67.109.86.186/mjpg/video.mjpg'
   auth:
     user: 'admin'
     password: 'admin'
     sendImmediately: false
 
-paparazzo.on "update", (image) => 
+paparazzi.on "update", (image) => 
   console.log "Downloaded #{image.length} bytes"
 
-paparazzo.on 'error', (error) => 
+paparazzi.on 'error', (error) => 
   console.log "Error: #{error.message}"
 
-paparazzo.start()
+paparazzi.start()
 
 # Serve image
 # Take a look at server.coffee
@@ -77,7 +77,7 @@ Demo
 	$ make run
 
 For a list of tested cameras check ["List of tested
-cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-tested-cameras) in the wiki
+cameras"](https://github.com/nickrobinson/paparazzi/wiki/List-of-tested-cameras) in the wiki
 section.
 
 Upcoming features
@@ -94,4 +94,5 @@ License
 
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
-Author: Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
+Original Author: Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
+Maintainer: Nick Robinson, Twitter <[@Nrobinson33](https://twitter.com/NRobinson33)>
