@@ -10,6 +10,6 @@ run: install compile
 	node demo/bootstrap.js
 
 test:
-	./node_modules/.bin/mocha --compilers coffee:coffee-script -R spec
+	./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R spec
 
 .PHONY: test run

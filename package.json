@@ -4,6 +4,7 @@
     "description": "A high performance web proxy for serving MJPG streams to the masses.",
     "version": "0.5.2",
     "main": "./src/paparazzi",
+    "license": "MIT",
     "repository": {
       "type": "git",
       "url": "https://github.com/nickrobinson/paparazzi"

@@ -11,15 +11,7 @@ paparazzi = null
 
 describe 'Paparazzi constructor', ->
     it 'should assign port 80 by default', ->
+        url = 'http://67.109.86.186/mjpg/video.mjpg'
         paparazzi = new Paparazzi
-            host: '85.105.120.239'
-        paparazzi.options.port.should.equal 80
-    it 'should looked after "/" by default', ->
-        paparazzi = new Paparazzi
-            host: '85.105.120.239'
-        paparazzi.options.path.should.equal '/'
-    it 'should be initialized with a host parameter', ->
-        paparazzi = new Paparazzi
-            port: 1337
-        paparazzi.should.equal {}
-
+            url: url
+        paparazzi.options.url.should.equal url
