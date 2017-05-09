@@ -1,6 +1,9 @@
 paparazzi.js
 -
 
+[![CircleCI](https://circleci.com/gh/nickrobinson/paparazzi.svg?style=svg)](https://circleci.com/gh/nickrobinson/paparazzi)
+
+
 _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
 
 **What is this?**
