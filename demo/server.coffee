@@ -1,16 +1,16 @@
 # Using the Paparazzo.js module
 
 Paparazzo = require '../src/paparazzo'
-http = require 'http'
-url = require 'url'
+express = require 'express'
+app = express()
 
 # For a list of public cameras to test check:
 # https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras
 
 paparazzo = new Paparazzo
-    host: '195.67.26.73'
+    host: '67.109.86.186'
     port: 80
-    path: '/mjpg/video.mjpg?camera=1'
+    path: '/mjpg/video.mjpg'
 
 updatedImage = ''
 
@@ -23,19 +23,11 @@ paparazzo.on 'error', (error) =>
 
 paparazzo.start()
 
-http.createServer (req, res) ->
-    data = ''
-    path = url.parse(req.url).pathname
-        
-    if path == '/camera' and updatedImage?
-        data = updatedImage
-        console.log "Will serve image of #{data.length} bytes"
+app.get '/camera', (req, res, next) ->
+    res.status 200
+    res.set
+      'Content-Type': 'image/jpeg'
+      'Content-Length': updatedImage.length
+    res.end updatedImage, 'binary'
 
-    res.writeHead 200,
-        'Content-Type': 'image/jpeg'
-        'Content-Length': data.length
-
-    res.write data, 'binary'
-    res.end()
-.listen(3000)
-
+app.listen 3000
