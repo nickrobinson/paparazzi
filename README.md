@@ -12,7 +12,7 @@ A high performance web proxy for serving [MJPG](http://en.wikipedia.org/wiki/Mot
 
 IPCamera (1) <-> (1) paparazzi.js (1) <-> (N) Users
 
-![Demo screenshot](https://github.com/wilhelmbot/Paparazzi.js/raw/master/mjpg_demo.gif "Streaming a VIVOTEK camera")
+![Demo screenshot](https://github.com/nickrobinson/paparazzi/blob/master/mjpg_demo.gif "Streaming a VIVOTEK camera")
 
 Background
 -
