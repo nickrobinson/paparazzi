@@ -9,7 +9,9 @@
 #   paparazzo.start()
 #
 
-http = require 'http'
+request = require 'request'
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
 EventEmitter = require('events').EventEmitter
 
 class Paparazzo extends EventEmitter
@@ -19,9 +21,9 @@ class Paparazzo extends EventEmitter
 
   constructor: (options) ->
 
-    if not options.host?
+    if not options.url?
       emitter.emit 'error',
-        message: 'Host is not defined!'
+        message: 'URL is not defined!'
     options.port or= 80
     options.path or= '/'
     options.headers or= {}
@@ -33,8 +35,7 @@ class Paparazzo extends EventEmitter
     # To use EventEmitter in the callback, we must save our instance 'this'
     emitter = @
 
-    request = http.get @options, (response) ->
-
+    request.get(@options.url, @options).on 'response', (response) ->
       if response.statusCode != 200
         emitter.emit 'error',
           message: 'Server did not respond with HTTP 200 (OK).'
@@ -48,11 +49,6 @@ class Paparazzo extends EventEmitter
       response.on 'end', () ->
         emitter.emit 'error',
           message: "Server closed connection!"
-
-    request.on 'error', (error) ->
-      # Failed to connect
-      emitter.emit 'error',
-        message: error.message
 
   ###
   #

@@ -8,9 +8,7 @@ app = express()
 # https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras
 
 paparazzo = new Paparazzo
-    host: '67.109.86.186'
-    port: 80
-    path: '/mjpg/video.mjpg'
+    url: 'http://67.109.86.186/mjpg/video.mjpg'
 
 updatedImage = ''
 

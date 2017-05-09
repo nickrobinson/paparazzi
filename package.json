@@ -16,7 +16,8 @@
     "dependencies": {
         "coffee-script": "1.12.5",
         "chai": "3.5.0",
-        "mocha": "3.3.0"
+        "mocha": "3.3.0",
+        "request": "latest"
     },
     "devDependencies": {
         "express": "4.15.2"
