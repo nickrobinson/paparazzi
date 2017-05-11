@@ -81,22 +81,11 @@ class Paparazzi extends EventEmitter
   ###
   handleServerResponse: (chunk) =>
     boundary_index = chunk.indexOf(@boundary)
-
-    # Make sure we don't have a carry over boundary from the previous frame
-    if @data
-      previous_frame_boundary = @data.indexOf(@boundary)
-      if previous_frame_boundary != -1
-        #We know we are going to have headers that we need to scrub
-        typeMatches = chunk.match /Content-Type:\s+image\/jpeg\s+/
-        matches = chunk.match /Content-Length:\s+(\d+)\s+/
-        if matches? and matches.length > 1
-          newImageBeginning = chunk.indexOf(matches[0]) + matches[0].length
-          @imageExpectedLength = matches[1]
-          chunk = chunk.substring newImageBeginning
+    boundary_percentage = boundary_index*1.0/chunk.length
 
     # If a boundary is found, generate a new image from the data accumulated up to the boundary.
     # Otherwise keep eating. We will probably find a boundary in the next chunk.
-    if boundary_index != -1
+    if boundary_index != -1 and boundary_percentage < 0.98
 
       # Append remaining data
       @data += chunk.substring 0, boundary_index
