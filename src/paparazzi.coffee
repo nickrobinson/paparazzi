@@ -24,9 +24,6 @@ class Paparazzi extends EventEmitter
     if not options.url?
       emitter.emit 'error',
         message: 'URL is not defined!'
-    options.port or= 80
-    options.path or= '/'
-    options.headers or= {}
     @options = options
     @memory = options.memory or 8388608 # 8MB
 
@@ -40,6 +37,9 @@ class Paparazzi extends EventEmitter
         emitter.emit 'error',
           message: 'Server did not respond with HTTP 200 (OK).'
         return
+
+      emitter.emit 'debug',
+        message: response.headers['content-type']
 
       emitter.boundary = emitter.boundaryStringFromContentType response.headers['content-type']
       @data = ''
@@ -64,6 +64,8 @@ class Paparazzi extends EventEmitter
       boundary = '--myboundary'
       @emit 'error',
         message: "Couldn't find a boundary string. Falling back to --myboundary."
+    @emit 'debug',
+      message: 'Boundary set to: ' + boundary
     boundary
 
   ###
@@ -80,9 +82,22 @@ class Paparazzi extends EventEmitter
   handleServerResponse: (chunk) =>
     boundary_index = chunk.indexOf(@boundary)
 
+    # Make sure we don't have a carry over boundary from the previous frame
+    if @data
+      previous_frame_boundary = @data.indexOf(@boundary)
+      if previous_frame_boundary != -1
+        #We know we are going to have headers that we need to scrub
+        typeMatches = chunk.match /Content-Type:\s+image\/jpeg\s+/
+        matches = chunk.match /Content-Length:\s+(\d+)\s+/
+        if matches? and matches.length > 1
+          newImageBeginning = chunk.indexOf(matches[0]) + matches[0].length
+          @imageExpectedLength = matches[1]
+          chunk = chunk.substring newImageBeginning
+
     # If a boundary is found, generate a new image from the data accumulated up to the boundary.
     # Otherwise keep eating. We will probably find a boundary in the next chunk.
     if boundary_index != -1
+
       # Append remaining data
       @data += chunk.substring 0, boundary_index
       # Now we got a new image
@@ -108,9 +123,17 @@ class Paparazzi extends EventEmitter
         newImageBeginning = remaining.indexOf(typeMatches[0]) + typeMatches[0].length
         @data += remaining.substring newImageBeginning
       else
+        @data += remaining
+        @emit 'debug',
+          message: 'Previous Image: ' + chunk.substring 0, boundary_index
+        @emit 'debug',
+          message: 'New Image: ' + remaining, remaining.length
+
+        @emit 'debug',
+          message: 'Current Boundary: ' + boundary_index
         newImageBeginning = boundary_index + @boundary.length
         @emit 'error',
-          message: 'Could not find beginning of next image'
+          message: 'Boundary detected at end of frame. Copying to next frame.'
     else
       @data += chunk
 
