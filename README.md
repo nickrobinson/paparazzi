@@ -35,7 +35,7 @@ Usage
 ```coffeescript
 # Initialize
 
-# Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
+# Same parameters as requst.get https://github.com/request/request
 paparazzi = new Paparazzi
   url: 'http://67.109.86.186/mjpg/video.mjpg'
   auth:
@@ -98,4 +98,5 @@ License
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
 Original Author: Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
+
 Maintainer: Nick Robinson, Twitter <[@Nrobinson33](https://twitter.com/NRobinson33)>
