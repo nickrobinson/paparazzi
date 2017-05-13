@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+* Snyk patch to fix https://snyk.io/vuln/npm:growl:20160721
 
 ### Changed
 
