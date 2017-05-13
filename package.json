@@ -1,29 +1,35 @@
 {
-    "name": "paparazzi",
-    "author": "Nick Robinson <nrobinson13@gmail.com>",
-    "description": "A high performance web proxy for serving MJPG streams to the masses.",
-    "version": "0.5.4",
-    "main": "./src/paparazzi",
-    "license": "MIT",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/nickrobinson/paparazzi"
-    },
-    "keywords": [
-      "mjpg",
-      "proxy",
-      "parser"
-    ],
-    "dependencies": {
-        "coffee-script": "1.12.5",
-        "chai": "3.5.0",
-        "mocha": "3.3.0",
-        "request": "latest"
-    },
-    "devDependencies": {
-        "express": "4.15.2"
-    },
-    "engines": {
-      "node": "v0.6.5"
-    }
+  "name": "paparazzi",
+  "author": "Nick Robinson <nrobinson13@gmail.com>",
+  "description": "A high performance web proxy for serving MJPG streams to the masses.",
+  "version": "0.5.4",
+  "main": "./src/paparazzi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickrobinson/paparazzi"
+  },
+  "keywords": [
+    "mjpg",
+    "proxy",
+    "parser"
+  ],
+  "dependencies": {
+    "coffee-script": "1.12.5",
+    "chai": "3.5.0",
+    "mocha": "3.3.0",
+    "request": "latest",
+    "snyk": "^1.30.0"
+  },
+  "devDependencies": {
+    "express": "4.15.2"
+  },
+  "engines": {
+    "node": "v0.6.5"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
