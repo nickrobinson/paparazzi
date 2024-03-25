@@ -22,7 +22,7 @@
     "snyk": "^1.192.3"
   },
   "devDependencies": {
-    "express": "4.15.2"
+    "express": "4.19.2"
   },
   "engines": {
     "node": "v0.6.5"
